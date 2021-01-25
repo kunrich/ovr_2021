@@ -1,14 +1,15 @@
-var express = require('express');
+var express = require("express");
 var request = require('request');
-var request1 = require('request');
+var app     = express();
+var port    = process.env.PORT || 80;
 
-var app = express();
-app.use(express.json());
+app.use(express.static('public'));
 
+app.get("/",(req,res)=>{
 
-app.get('/', (req, res) => {
 if(req.query.url){
 var str1 = Buffer.from(req.query.url, 'base64').toString('utf-8');
+
 request(str1, function (error, response, body) {
 	if (!error && response.statusCode == 200) {
 		console.log("ok request 1...");
@@ -36,21 +37,19 @@ res.send(body);
 });
 
 
-	}
-	else {
-		console.log("Error "+response.statusCode);
-	}
+	}else{res.send("error");}
 })	
 
 		}
-	}
-	else {
-		console.log("Error "+response.statusCode);
-	}
+	}else{res.send("error");}
 })
+
+
+
+}else{
+res.send("error");
 }
+
 });
 
-
-var port = process.env.PORT || 80;
-app.listen(port, () => console.log(`Listening on port${port}...`) );
+app.listen(port);
