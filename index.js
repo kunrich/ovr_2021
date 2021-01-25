@@ -10,9 +10,9 @@ app.get("/",(req,res)=>{
 if(req.query.url){
 var str1 = Buffer.from(req.query.url, 'base64').toString('utf-8');
 
-request(str1, function (error, response, body) {
+request.get(str1, function (error, response, body) {
 res.send(body);
-})
+});
 
 }else{
 res.send("error");
