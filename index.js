@@ -1,5 +1,5 @@
 var express = require("express");
-var request = require('request');
+var request = require("request/index.js");
 var app     = express();
 var port    = process.env.PORT || 80;
 
