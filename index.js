@@ -42,7 +42,7 @@ res.end();
 }else{console.log("error pass1");}
 });
 
-}).listen(8080); 
+}).listen(80); 
 
 
 console.log("ok file");
